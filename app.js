@@ -6,9 +6,11 @@ const os=require('os');
 var userName=os.userInfo().username;
 app.set('view engine','hbs');
 app.use(express.static(__dirname + '/public'));
-app.use((req,res,next)=>{
+/*app.use((req,res,next)=>{
   res.render('maintenance.hbs');
-})
+  next();
+})*/
+const port=process.env.PORT ||3000;
 app.get('/',(req,res)=>{
 res.render('home.hbs',{
   Title:'Homepage',
@@ -30,6 +32,6 @@ app.get('/bad',(req,res)=>{
     bad:'Error while searching a girlfirend'
   });
 })
-app.listen(3000,()=>{
-  console.log('App is listening on port 3000');
+app.listen(port,()=>{
+  console.log(`App is listening on port ${port}`);
 })
